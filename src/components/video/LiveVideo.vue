@@ -9,7 +9,7 @@
 </template>
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import VideoLoading from "@/components/VideoLoading.vue";
+import VideoLoading from "@/components/video/VideoLoading.vue";
 //直播物件
 const inputVideoStream = ref('')
 const flvStream = ref("https://v1.gamenow.online/live?app=bwtc&stream=watch01");
