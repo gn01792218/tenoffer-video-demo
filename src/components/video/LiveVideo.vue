@@ -1,6 +1,6 @@
 <template>
-  <div class="vd">
-    <div class="fullscreen-video">
+  <div class="vd w-[980px] mx-auto">
+    <div class="fullscreen-video mx-auto">
       <canvas id="video" width="980" height="588" /><br />
       <VideoLoading v-show="loadingVideo" />
     </div>
