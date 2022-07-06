@@ -1,5 +1,5 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
-
+console.log(import.meta.env.VITE_APP_API_URL)
 // axios實例
 const service = axios.create({
   baseURL:'https://ptx.transportdata.tw/MOTC/',

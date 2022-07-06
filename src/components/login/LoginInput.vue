@@ -73,5 +73,4 @@ const { loginRequest, isPending } = useLogin()
 
 const userName = ref("")
 const userpassword = ref("")
-defineProps<{ msg: string }>();
 </script>
