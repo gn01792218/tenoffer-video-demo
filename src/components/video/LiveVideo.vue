@@ -1,11 +1,11 @@
 <template>
-  <div class="vd w-[980px] mx-auto">
-    <div class="fullscreen-video mx-auto">
+  <div class="vd w-[980px] mx-auto relative">
+    <div class="fullscreen-video">
       <canvas id="video" width="980" height="588" /><br />
-      <VideoLoading v-show="loadingVideo" />
+      <videoLoading v-show="loadingVideo" />
+      <i class="absolute right-[0.5%] bottom-[4%] text-white bi bi-arrows-fullscreen" @click="fullScreen(np)"></i>
     </div>
   </div>
-  
 </template>
 <script setup lang="ts">
 import { onMounted, ref } from "vue";

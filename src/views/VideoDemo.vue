@@ -1,7 +1,6 @@
 <template>
     <div class="">
         <LiveVideo />
-        AAAA
     </div>
 </template>
 <script setup lang="ts">
