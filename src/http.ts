@@ -6,12 +6,11 @@ const service = axios.create({
   headers: { 'Content-Type': 'application/json' },
   timeout: 20000 // 超时时间
 });
-
+//請求頭
+const header = getAuthorizationHeader()
 // 请求攔截
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
-    // const token = localStorage.getItem("token")
-    // token && (config.headers.Authorization = 'JWT ' + localStorage.token)
     return config;
   },
   (err: any) => {
@@ -60,12 +59,16 @@ service.interceptors.response.use(
     return Promise.reject(errMsg);
   }
 );
-
+//header
+function getAuthorizationHeader(){
+  let Authorization = "Bearer"+window.localStorage.getItem("token")
+  return {headers:{'Authorization': Authorization}}
+}
 export default (method:string ,url:string ,data = null , config:AxiosRequestConfig)=>{
     method = method.toLowerCase()
     switch(method){
         case 'get':
-            return service.get(url)
+            return service.get(url,header)
     }
 
 }

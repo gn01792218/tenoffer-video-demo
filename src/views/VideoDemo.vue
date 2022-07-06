@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div class="flex items-center pt-10">
         <LiveVideo />
     </div>
 </template>
