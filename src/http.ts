@@ -65,11 +65,13 @@ function getAuthorizationHeader(){
   let Authorization = "Bearer"+window.localStorage.getItem("token")
   return {headers:{'Authorization': Authorization}}
 }
-export default (method:string ,url:string ,data = null , config:AxiosRequestConfig)=>{
+export default (method:string ,url:string ,data = {} , config?:AxiosRequestConfig)=>{
     method = method.toLowerCase()
     switch(method){
         case 'get':
             return service.get(url,header)
+        case 'post':
+          return service.post(url,data)
     }
 
 }

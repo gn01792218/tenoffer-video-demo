@@ -2,6 +2,6 @@
 import req from './http'
 
 //API
-// export const getAllTourismData = (top = 200) => {
-//   return req('get',`/v2/Tourism/ScenicSpot?${sceneProperty}$top=${top}&$format=JSON`)
-// }
+export const getUserToken = (name:string,pass:string) => {
+  return req('post',`/api/auth/login`,{account:name,password:pass})
+}
