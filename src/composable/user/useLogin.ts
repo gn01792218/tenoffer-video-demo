@@ -14,16 +14,16 @@ export default function useLogin(){
         
         //發送登入請求
 
-        //設置本第資訊
-        store.commit('user/setLoginPending',true)
-        store.commit('user/setUserName',userName)
-        store.commit('user/setUserPassword',password)
+        // //設置本第資訊
+        // store.commit('user/setLoginPending',true)
+        // store.commit('user/setUserName',userName)
+        // store.commit('user/setUserPassword',password)
 
-        //暫時的
-        setTimeout(()=>{
-            store.commit('user/setLoginPending',false)
-            routerPush('/VideoDemo')
-        },2000)
+        // //暫時的
+        // setTimeout(()=>{
+        //     store.commit('user/setLoginPending',false)
+        //     routerPush('/VideoDemo')
+        // },2000)
 
     }
     function loginRespond(){
