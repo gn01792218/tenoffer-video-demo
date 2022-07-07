@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite --open",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy-ghpage":"npm run build && node ./deploy/ghpages.js"
   },
   "dependencies": {
     "autoprefixer": "^10.4.7",
@@ -19,6 +20,7 @@
   "devDependencies": {
     "@types/node": "^17.0.21",
     "@vitejs/plugin-vue": "^2.2.0",
+    "gh-pages": "^4.0.0",
     "typescript": "^4.5.4",
     "vite": "^2.8.0",
     "vue-tsc": "^0.29.8"

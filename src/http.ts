@@ -29,7 +29,7 @@ service.interceptors.response.use(
           errMsg = '登入失敗，可能是帳號或密碼錯誤';
           break;
         case 401: //未登入或認證過期，清除本地和vuex中的token
-          errMsg ='查無該使用者'
+          errMsg ='未登入或認證過期、或查無該使用者'
           break;
         case 403:
           errMsg = '拒絕訪問';

@@ -28,9 +28,9 @@ export default function useLogin() {
                     break
             }
             store.commit('user/setLoginPending', false)
-        }).catch(error => {
-            console.log(error)
-            alert('查無使用者')
+        })
+        .catch(error => {
+            alert(error)
             store.commit('user/setLoginPending', false)
         })
     }
