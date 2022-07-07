@@ -12,6 +12,22 @@ export default function useLiveVideo() {
     })
 
     //方法
+    function createVideo(np: NodePlayer) {
+        np.setView("video");
+        np.setScaleMode(1);
+        np.setBufferTime(300);
+        np.on("error", (e) => {
+            console.log("直播發生錯誤", e);
+        });
+        np.on("videoInfo", (w) => {
+            console.log("顯示Video", w);
+            loadingVideo.value = false;
+        });
+        np.on("stop", () => {
+            console.log("結束播放Video");
+            loadingVideo.value = true;
+        });
+    }
     function startPlay(np: NodePlayer, streamUrl: string) {
         // console.log("LiveVideo開始撥放", testPlayUrl);
         np.setKeepScreenOn();
@@ -31,6 +47,7 @@ export default function useLiveVideo() {
         videoStram,
         loadingVideo,
         //methods
+        createVideo,
         startPlay,
         stopPlay,
         fullScreen,
