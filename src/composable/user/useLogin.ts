@@ -23,6 +23,7 @@ export default function useLogin() {
             switch (res.data.code) {
                 case 200:
                     localStorage.setItem("token", res.data.data.token)
+                    store.commit('liveVideo/setVideoStream',res.data.data.user.link)
                     store.commit('user/setUserName', userName)
                     routerPush('/VideoDemo')
                     break

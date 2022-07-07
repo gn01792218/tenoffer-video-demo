@@ -1,13 +1,15 @@
 import {User} from '../types/user/user'
 interface State {
   user:Partial<User>
-  loginPending:boolean
+  loginPending:boolean,
+  videoStram:string,
 }
 export const state: State = {
   user:{
     isLogin:false
   },
-  loginPending:false
+  loginPending:false,
+  videoStram:''
 };
 export const actions = {}
 
@@ -27,6 +29,9 @@ export const mutations = {
   },
   setLoginPending(state:State,payload:boolean){
     state.loginPending = payload
+  },
+  setVideoStream(state:State,payload:string){
+    state.videoStram = payload
   }
 };
 export const getters = {}
