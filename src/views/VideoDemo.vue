@@ -1,15 +1,11 @@
 <template>
-    <div class="flex items-center pt-10">
+    <Header />
+    <div class="flex items-center">
         <LiveVideo />
     </div>
-    <button @click="logOut">登出</button>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
 import LiveVideo from "@/components/video/LiveVideo.vue";
-import useLogin from "@/composable/user/useLogin";
-const { logOut } = useLogin()
-</script>
+import Header from '@/views/Header.vue'
 
-<style scoped>
-</style>
+</script>

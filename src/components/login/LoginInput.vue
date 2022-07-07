@@ -50,7 +50,7 @@
             Loading...
           </button>
           <button v-else type="submit"
-            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            class="primary-btn group relative flex justify-center  text-sm font-medium"
             @click="loginRequest(userName, userpassword)">
             登入
           </button>
@@ -62,12 +62,6 @@
 
 </template>
 <script setup lang="ts">
-
 import useLogin from '@/composable/user/useLogin'
-import { ref } from 'vue';
-
-const { loginRequest, isPending } = useLogin()
-
-const userName = ref("")
-const userpassword = ref("")
+const { loginRequest, isPending, userName ,userpassword } = useLogin()
 </script>

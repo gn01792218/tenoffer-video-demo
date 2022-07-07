@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Design System */
+/* color */
+.primary-bg-color{
+    @apply bg-indigo-600;
+}
+/* btn */
+.primary-btn{
+    @apply w-full py-2 px-4 primary-bg-color text-white  border border-transparent rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+}
