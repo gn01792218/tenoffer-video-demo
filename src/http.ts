@@ -1,9 +1,7 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
-console.log('幹')
-console.log(import.meta.env.VITE_APP_API_URL)
 // axios實例
 const service = axios.create({
-  baseURL:'https://ptx.transportdata.tw/MOTC/',
+  baseURL:import.meta.env.VITE_APP_API_URL?.toString(),
   headers: { 'Content-Type': 'application/json' },
   timeout: 20000 // 超时时间
 });

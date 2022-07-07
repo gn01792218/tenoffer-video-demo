@@ -4,3 +4,7 @@ export interface User{
     userToken: string,
     isLogin: boolean,
 }
+export interface UserLoginData{
+    account:string,
+    password:string
+}

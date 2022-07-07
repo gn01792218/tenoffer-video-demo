@@ -2,6 +2,7 @@
 import { computed } from "vue"
 import { useStore } from "vuex"
 import useRouterUtil from '@/composable/util/useRouter'
+import { getUserToken } from '@/api'
 export default function useLogin(){
     const { routerPush } = useRouterUtil()
     const store = useStore()
@@ -13,17 +14,19 @@ export default function useLogin(){
         if(!userName || !password) return
         
         //發送登入請求
-
+        getUserToken({account:'ktester1',password:'ktester1'})?.then(res=>{
+            console.log(res.data)
+        })
         //設置本第資訊
         store.commit('user/setLoginPending',true)
         store.commit('user/setUserName',userName)
         store.commit('user/setUserPassword',password)
 
         //暫時的
-        setTimeout(()=>{
-            store.commit('user/setLoginPending',false)
-            routerPush('/VideoDemo')
-        },2000)
+        // setTimeout(()=>{
+        //     store.commit('user/setLoginPending',false)
+        //     routerPush('/VideoDemo')
+        // },2000)
 
     }
     function loginRespond(){
