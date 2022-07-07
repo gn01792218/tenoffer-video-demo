@@ -5,3 +5,6 @@ import { UserLoginData } from '@/types/user/user'
 export const getUserToken = (userLoginData:UserLoginData) => {
   return req('post',`/api/auth/login`,userLoginData)
 }
+export const removeUserToken = () => {
+  return req('get',`/api/auth/logout`)
+}

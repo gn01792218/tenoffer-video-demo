@@ -28,9 +28,9 @@ service.interceptors.response.use(
         case 400:
           errMsg = '登入失敗，可能是帳號或密碼錯誤';
           break;
-        // case 401: //未登入或認證過期，清除本地和vuex中的token
-        //   if()
-        //   break;
+        case 401: //未登入或認證過期，清除本地和vuex中的token
+          errMsg ='查無該使用者'
+          break;
         case 403:
           errMsg = '拒絕訪問';
           break;
@@ -60,14 +60,14 @@ service.interceptors.response.use(
 );
 //header
 function getAuthorizationHeader(){
-  let Authorization = "Bearer"+window.localStorage.getItem("token")
+  let Authorization = "Bearer"+localStorage.getItem("token")
   return {headers:{'Authorization': Authorization}}
 }
 export default (method:string ,url:string ,data = {} , config?:AxiosRequestConfig)=>{
     method = method.toLowerCase()
     switch(method){
         case 'get':
-            return service.get(url,header)
+            return service.get(url,{headers:{'Authorization': `Bearer ${localStorage.getItem("token")}`}})
         case 'post':
           return service.post(url,data)
     }

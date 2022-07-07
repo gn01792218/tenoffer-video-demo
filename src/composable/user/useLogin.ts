@@ -2,41 +2,51 @@
 import { computed } from "vue"
 import { useStore } from "vuex"
 import useRouterUtil from '@/composable/util/useRouter'
-import { getUserToken } from '@/api'
-export default function useLogin(){
+import { getUserToken, removeUserToken } from '@/api'
+export default function useLogin() {
     const { routerPush } = useRouterUtil()
     const store = useStore()
-    const isPending = computed(()=>{
+    const isPending = computed(() => {
         return store.state.user.loginPending
     })
-    function loginRequest(userName:string,password:string){
-        
-        if(!userName || !password) return
-        
+    function loginRequest(userName: string, password: string) {
+        if (!userName || !password) return
+        store.commit('user/setLoginPending', true)
         //發送登入請求
-        getUserToken({account:'ktester1',password:'ktester1'})?.then(res=>{
-            console.log(res.data)
+        getUserToken({ account: userName, password: password })?.then(res => {
+            switch (res.data.code) {
+                case 200:
+                    localStorage.setItem("token", res.data.data.token)
+                    store.commit('user/setUserName', userName)
+                    routerPush('/VideoDemo')
+                    break
+            }
+            store.commit('user/setLoginPending', false)
+        }).catch(error => {
+            console.log(error)
+            alert('查無使用者')
+            store.commit('user/setLoginPending', false)
         })
-        //設置本第資訊
-        store.commit('user/setLoginPending',true)
-        store.commit('user/setUserName',userName)
-        store.commit('user/setUserPassword',password)
-
-        //暫時的
-        // setTimeout(()=>{
-        //     store.commit('user/setLoginPending',false)
-        //     routerPush('/VideoDemo')
-        // },2000)
-
     }
-    function loginRespond(){
+    function logOut() {
+        removeUserToken()?.then(res => {
+            console.log(res)
+            switch (res.data.code) {
+                case 200:
+                    localStorage.removeItem("token")
+                    routerPush('/')
+                    break
+            }
+        })
+    }
+    function loginRespond() {
         //登入失敗
         //取消pending
-        
+
         //登入成功
         //1.設置token
         //2.取消pending
-        store.commit('user/setLoginPending',false)
+        store.commit('user/setLoginPending', false)
         routerPush('/VideoDemo')
     }
     return {
@@ -44,5 +54,6 @@ export default function useLogin(){
         isPending,
         //methods
         loginRequest,
+        logOut,
     }
 }
