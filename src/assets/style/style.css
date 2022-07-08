@@ -8,7 +8,7 @@
     @apply bg-indigo-600;
 }
 .primary-border-color{
-    @apply border-indigo-600;
+    @apply border-white;
 }
 /* btn */
 .primary-btn{

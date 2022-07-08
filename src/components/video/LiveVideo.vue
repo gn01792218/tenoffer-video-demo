@@ -1,7 +1,7 @@
 <template>
   <div class="vd w-[980px] mx-auto relative">
     <div class="fullscreen-video">
-      <canvas id="video" class="border-4 primary-border-color rounded-md" width="980" height="588" /><br />
+      <canvas id="video" class="primary-border-color border-4 rounded-sm" width="980" height="588" /><br />
       <videoLoading v-show="loadingVideo" />
       <i class="absolute right-[0.5%] bottom-[5%] text-white bi bi-arrows-fullscreen" @click="fullScreen(np)"></i>
     </div>

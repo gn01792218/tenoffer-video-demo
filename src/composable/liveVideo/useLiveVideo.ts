@@ -17,7 +17,7 @@ export default function useLiveVideo() {
     function createVideo(np: NodePlayer) {
         console.log('初始化視訊')
         np.setView("video");
-        np.setScaleMode(1);
+        np.setScaleMode(0);
         np.setBufferTime(300);
         np.on("error", (e) => {
             console.log("直播發生錯誤", e);
