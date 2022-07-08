@@ -8,3 +8,8 @@ export const getUserToken = (userLoginData:UserLoginData) => {
 export const removeUserToken = () => {
   return req('get',`/api/auth/logout`)
 }
+
+//目前主要用來更新使用者資訊(包含串流)
+export const getUserInfo = () => {
+  return req('get',`/api/auth/user`)
+}

@@ -1,8 +1,7 @@
 import { ref, computed } from "vue"
 import { useStore } from "vuex"
-
+const np = new NodePlayer();
 export default function useLiveVideo() {
-    const np = new NodePlayer();
     //響應式
     const loadingVideo = ref(true);
     //store
@@ -10,7 +9,6 @@ export default function useLiveVideo() {
     const videoStram = computed(() => {
         return store.state.liveVideo.videoStram
     })
-
     //方法
     function createVideo(np: NodePlayer) {
         np.setView("video");
