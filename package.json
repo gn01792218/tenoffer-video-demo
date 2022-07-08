@@ -6,7 +6,7 @@
     "dev": "vite --open",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "deploy-ghpage":"npm run build && node ./deploy/ghpages.js"
+    "deploy-ghpage": "npm run build && node ./deploy/ghpages.js"
   },
   "dependencies": {
     "autoprefixer": "^10.4.7",

@@ -1,5 +1,6 @@
 import { ref, computed } from "vue"
 import { useStore } from "vuex"
+import { getUserInfo } from '@/api'
 const np = new NodePlayer();
 export default function useLiveVideo() {
     //響應式
@@ -10,7 +11,11 @@ export default function useLiveVideo() {
         return store.state.liveVideo.videoStram
     })
     //方法
+     function setLiveVIdeoUrl(url:string){
+        store.commit('liveVideo/setVideoStream',url)
+    }
     function createVideo(np: NodePlayer) {
+        console.log('初始化視訊')
         np.setView("video");
         np.setScaleMode(1);
         np.setBufferTime(300);
@@ -39,6 +44,20 @@ export default function useLiveVideo() {
     function fullScreen(np: NodePlayer) {
         np.fullscreen()
     }
+    //更新視訊網址
+    function updateStreamUrl(np:NodePlayer){
+        getUserInfo()?.then(res=>{
+            switch (res.data.code) {
+                case 200:
+                    if(videoStram.value === res.data.data[0].link) alert('目前已是最新網址')
+                    setLiveVIdeoUrl(res.data.data[0].link)
+                    stopPlay(np)
+                    startPlay(np,res.data.data[0].link)
+                    break
+            }
+        })
+    }
+   
     return {
         //data
         np,
@@ -46,8 +65,10 @@ export default function useLiveVideo() {
         loadingVideo,
         //methods
         createVideo,
+        setLiveVIdeoUrl,
         startPlay,
         stopPlay,
         fullScreen,
+        updateStreamUrl,
     }
 }

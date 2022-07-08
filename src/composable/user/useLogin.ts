@@ -3,9 +3,12 @@ import { ref, computed } from "vue"
 import { useStore } from "vuex"
 import useRouterUtil from '@/composable/util/useRouter'
 import { getUserToken, removeUserToken } from '@/api'
+import useLiveVideo from "@/composable/liveVideo/useLiveVideo";
+
 export default function useLogin() {
     //其他compasoble
     const { routerPush } = useRouterUtil()
+    const {setLiveVIdeoUrl} = useLiveVideo()
     //響應式資料
     const userName = ref("")
     const userpassword = ref("")
@@ -37,11 +40,20 @@ export default function useLogin() {
     }
     function logOut() {
         removeUserToken()?.then(res => {
-            console.log(res)
             switch (res.data.code) {
                 case 200:
                     localStorage.removeItem("token")
+                    setLiveVIdeoUrl("")
                     routerPush('/')
+                    break
+            }
+        })
+    }
+    function windowCloseLogOut(){
+        removeUserToken()?.then(res => {
+            switch (res.data.code) {
+                case 200:
+                    localStorage.removeItem("token")
                     break
             }
         })
@@ -54,5 +66,6 @@ export default function useLogin() {
         //methods
         loginRequest,
         logOut,
+        windowCloseLogOut,
     }
 }

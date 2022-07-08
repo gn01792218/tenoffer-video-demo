@@ -11,11 +11,12 @@
 import { onMounted, ref } from "vue";
 import VideoLoading from "@/components/video/VideoLoading.vue";
 import useLiveVideo from "@/composable/liveVideo/useLiveVideo"
-const { np,videoStram ,loadingVideo ,createVideo,startPlay,stopPlay,fullScreen } = useLiveVideo()
+const { np,videoStram ,loadingVideo ,createVideo,startPlay,stopPlay,fullScreen,updateStreamUrl } = useLiveVideo()
 
 //初始化
 onMounted(() => {
   createVideo(np)
+  if(!videoStram.value)updateStreamUrl(np)
   startPlay(np,videoStram.value);
 });
 
