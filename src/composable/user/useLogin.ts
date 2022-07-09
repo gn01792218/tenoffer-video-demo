@@ -8,7 +8,7 @@ import useLiveVideo from "@/composable/liveVideo/useLiveVideo";
 export default function useLogin() {
     //其他compasoble
     const { routerPush } = useRouterUtil()
-    const {setLiveVIdeoUrl} = useLiveVideo()
+    const {np, setLiveVIdeoUrl ,stopPlay} = useLiveVideo()
     //響應式資料
     const userName = ref("")
     const userpassword = ref("")
@@ -44,6 +44,7 @@ export default function useLogin() {
                 case 200:
                     localStorage.removeItem("token")
                     setLiveVIdeoUrl("")
+                    stopPlay(np)
                     routerPush('/')
                     break
             }
