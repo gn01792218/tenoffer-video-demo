@@ -7,8 +7,15 @@ export default function useLiveVideo() {
     const loadingVideo = ref(true);
     //store
     const store = useStore()
+    const liveVideo = store.state.liveVideo
     const videoStram = computed(() => {
-        return store.state.liveVideo.videoStram
+        return liveVideo.videoStram
+    })
+    const muted = computed(()=>{
+        return liveVideo.Muted
+    })
+    const stop = computed(()=>{
+        return liveVideo.stop
     })
     //方法
      function setLiveVIdeoUrl(url:string){
@@ -39,10 +46,29 @@ export default function useLiveVideo() {
     function stopPlay(np: NodePlayer) {
         np.stop();
         np.clearView(); //清除上一個視頻留下的東西
+        console.log('useVideo Stop')
     }
     //全螢幕
     function fullScreen(np: NodePlayer) {
         np.fullscreen()
+    }
+    //turnOff video
+    function turnOffVideo(np:NodePlayer,off:boolean){
+        store.commit('liveVideo/setStopVideo',off)
+        if(off){
+            stopPlay(np)
+        }else{
+            startPlay(np,videoStram.value)
+        }
+    }
+    //靜音/開啟音量
+    function mutedVideo(np:NodePlayer,muted:boolean){
+        store.commit('liveVideo/setVideoMuted',muted)
+        if(muted){
+            np.setVolume(0)
+        }else{
+            np.setVolume(1)
+        }
     }
     //更新視訊網址
     function updateStreamUrl(np:NodePlayer){
@@ -62,13 +88,17 @@ export default function useLiveVideo() {
         //data
         np,
         videoStram,
+        muted,
+        stop,
         loadingVideo,
         //methods
         createVideo,
         setLiveVIdeoUrl,
+        turnOffVideo,
         startPlay,
         stopPlay,
         fullScreen,
+        mutedVideo,
         updateStreamUrl,
     }
 }

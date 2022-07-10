@@ -45,6 +45,7 @@ export default function useLogin() {
                     localStorage.removeItem("token")
                     setLiveVIdeoUrl("")
                     stopPlay(np)
+                    console.log('視訊關閉')
                     routerPush('/')
                     break
             }
